@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+assets/announcer.mp3.import
+assets/intro.png.import
+assets/logo.png.import
+assets/main_theme.mp3.import

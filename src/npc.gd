@@ -54,7 +54,7 @@ func _character_movement() -> void:
 	#var linear_distance = sqrt(x_landing_position*x_landing_position + z_landing_postion*z_landing_postion)
 	var distance_to_ball = global_position.distance_to(ball.global_position)
 	
-	print(distance_to_ball)
+	#print(distance_to_ball)
 	
 	if distance_to_ball > ARRIVAL_THRESH:
 		if position.x < x_landing_position:

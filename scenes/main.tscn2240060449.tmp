@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=3 uid="uid://djx8hamdo7wg8"]
+
+[ext_resource type="PackedScene" uid="uid://0po0vhdlral3" path="res://scenes/ball.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cb884pc24w2td" path="res://scenes/player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://lyhxetg0ag5u" path="res://scenes/npc.tscn" id="3_sugp2"]
+
+[sub_resource type="Environment" id="Environment_sgp6g"]
+ambient_light_color = Color(0.477958, 0.53437, 0.740504, 1)
+glow_enabled = true
+glow_intensity = 0.48
+glow_bloom = 0.22
+glow_hdr_threshold = 0.41
+glow_hdr_scale = 0.69
+volumetric_fog_density = 0.5629
+volumetric_fog_albedo = Color(0.231056, 0.792389, 0.753953, 1)
+volumetric_fog_emission = Color(0.478401, 0.527117, 0.965956, 1)
+volumetric_fog_emission_energy = 619.46
+volumetric_fog_length = 101.4
+volumetric_fog_sky_affect = 0.93
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
+size = Vector3(37, 2, 29.3862)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+size = Vector3(37, 2, 29)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgp6g"]
+emission_enabled = true
+emission = Color(1, 0.810305, 0.822059, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
+size = Vector3(1, 62.3824, 6.37805)
+
+[node name="Main" type="WorldEnvironment"]
+environment = SubResource("Environment_sgp6g")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.060791)
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_o5qli")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Left wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.5, 9.908)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Left wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.52378, 0)
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Left wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.52378, 4.76837e-07)
+mesh = SubResource("BoxMesh_o5qli")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Right Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 7.5, -10.4675)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Right Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 4.76837e-07)
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Right Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 4.76837e-07)
+mesh = SubResource("BoxMesh_o5qli")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Back Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(0, -1, -2.62268e-07, 4.37114e-08, 2.62268e-07, -1, 1, -1.14641e-14, 4.37114e-08, 19.563, 7.5, -0.485)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Back Wall"]
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Back Wall/CollisionShape3D"]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="Front Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -19.3628, 7.5, 0.643267)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Front Wall"]
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Front Wall/CollisionShape3D"]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.7593, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
+shape = SubResource("BoxShape3D_sgp6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ceiling"]
+mesh = SubResource("BoxMesh_o5qli")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="right_light_CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 4.82302, -14.2714)
+height = 89.7047
+material = SubResource("StandardMaterial3D_sgp6g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -12.394)
+light_color = Color(0.988235, 0.0705882, 0.352941, 1)
+light_energy = 2.939
+light_specular = 1.631
+shadow_bias = 3.837
+omni_range = 34.53
+omni_attenuation = 0.8
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11, 0)
+visible = false
+light_color = Color(1, 0, 0.352941, 1)
+light_energy = 16.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 12.5226)
+light_color = Color(0.988235, 0.0705882, 0.352941, 1)
+light_energy = 2.939
+light_specular = 1.631
+shadow_bias = 3.837
+omni_range = 34.53
+omni_attenuation = 0.8
+
+[node name="left_CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 4.823, 14.271)
+height = 89.7047
+material = SubResource("StandardMaterial3D_sgp6g")
+
+[node name="net" type="StaticBody3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, -2.18557e-06, -50, 0, 50, -2.18557e-06, -0.0209613, 2.45928, 0.0752834)
+
+[node name="net_CSGCylinder3D3" type="CSGCylinder3D" parent="net"]
+transform = Transform3D(1, 3.72529e-09, -1.11022e-16, -3.72529e-09, 1, -3.55271e-15, 1.11022e-16, 3.55271e-15, 1, 0, 0, 0)
+gi_lightmap_texel_scale = 3.6236
+radius = 0.001
+height = 0.547243
+material = SubResource("StandardMaterial3D_sgp6g")
+
+[node name="net_CSGCylinder3D4" type="CSGCylinder3D" parent="net"]
+transform = Transform3D(1, 7.45058e-09, -2.22045e-16, -7.45058e-09, 1, -1.06581e-14, 2.22045e-16, 1.77636e-14, 1, 0, 1.97906e-09, 0.0475483)
+gi_lightmap_texel_scale = 3.6236
+radius = 0.001
+height = 0.547243
+material = SubResource("StandardMaterial3D_sgp6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="net"]
+transform = Transform3D(0.0100003, 1.72586e-08, -1.14925e-15, -1.72586e-08, 0.0100003, -2.27596e-15, 1.69135e-16, 7.77156e-16, 0.01, 9.21343e-05, -0.0216958, 0.0268903)
+shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="ball" parent="." instance=ExtResource("1_o5qli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46438, 6.13711, -2.83671)
+
+[node name="Player" parent="." instance=ExtResource("2_0wfyh")]
+transform = Transform3D(-0.0627905, 0, 0.998027, 0, 1, 0, -0.998027, 0, -0.0627905, 10.4592, 1.16736, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19, 0)
+light_color = Color(0.988235, 0.0705882, 0.352941, 1)
+light_energy = 3.055
+light_indirect_energy = 5.461
+light_volumetric_fog_energy = 0.677
+light_size = 0.227
+light_specular = 0.0
+shadow_enabled = true
+spot_range = 163.2
+spot_angle = 66.15
+
+[node name="NPC" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.68983, 1.64834, 0.471799)

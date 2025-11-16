@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://lyhxetg0ag5u"]
+
+[ext_resource type="Script" uid="uid://b7j3rewb8chwq" path="res://src/npc.gd" id="1_nh2m4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+material = SubResource("StandardMaterial3D_3vyb7")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3vyb7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vyb7"]
+size = Vector3(0.747437, 0.795288, 0.14502)
+
+[node name="NPC" type="CharacterBody3D"]
+script = ExtResource("1_nh2m4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -1.8258e-07, 2.38419e-07, -1.53323e-07)
+mesh = SubResource("CapsuleMesh_u8vuu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_3vyb7")
+
+[node name="ArmPivot" type="CharacterBody3D" parent="."]
+
+[node name="arm" type="MeshInstance3D" parent="ArmPivot"]
+transform = Transform3D(-0.0344485, 0.210758, 0.131317, 0.0357457, 0.554163, -0.0425668, -0.136237, 0.0921087, -0.044373, 0.498913, 0.778336, 0.107759)
+mesh = SubResource("CylinderMesh_3vyb7")
+
+[node name="racket" type="MeshInstance3D" parent="ArmPivot"]
+transform = Transform3D(0.725661, 0.0807422, 0.00337173, -0.0766053, 0.774948, 0.00435918, -0.0211601, -0.0365594, 0.099848, 0.724323, 1.6852, 0.189661)
+mesh = SubResource("BoxMesh_g2els")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArmPivot"]
+transform = Transform3D(0.994111, 0.10837, 0.000478819, -0.108273, 0.993015, 0.0468948, 0.00460651, -0.0466705, 0.9989, 0.726592, 1.68991, 0.195587)
+shape = SubResource("BoxShape3D_3vyb7")

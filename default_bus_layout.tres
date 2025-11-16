@@ -1,0 +1,18 @@
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://xtvemkbj055"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_g28q7"]
+resource_name = "Reverb"
+room_size = 0.55
+spread = 0.35
+dry = 0.4
+wet = 1.0
+
+[resource]
+bus/1/name = &"Announcer"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_g28q7")
+bus/1/effect/0/enabled = true

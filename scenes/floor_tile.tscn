@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://lhe561tll573"]
+
+[ext_resource type="Script" uid="uid://bb3avmh52nts" path="res://src/floor_tile.gd" id="1_m07oa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvsr8"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m07oa"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[node name="FloorTile" type="StaticBody3D"]
+script = ExtResource("1_m07oa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tvsr8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_m07oa")

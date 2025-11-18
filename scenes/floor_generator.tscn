@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://buyo065yt8wi"]
+
+[ext_resource type="Script" uid="uid://b8pxjwjvypmse" path="res://src/floor_generator.gd" id="1_vw7tu"]
+[ext_resource type="PackedScene" uid="uid://lhe561tll573" path="res://scenes/floor_tile.tscn" id="2_x8brh"]
+
+[node name="floor_generator" type="Node3D"]
+script = ExtResource("1_vw7tu")
+floor_tile = ExtResource("2_x8brh")
+
+[node name="FloorTile" parent="." instance=ExtResource("2_x8brh")]

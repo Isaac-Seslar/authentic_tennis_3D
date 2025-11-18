@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://0po0vhdlral3"]
+[gd_scene load_steps=7 format=3 uid="uid://0po0vhdlral3"]
+
+[ext_resource type="Script" uid="uid://b13gg2ulix8cc" path="res://src/ball.gd" id="1_7s4qf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n1dj2"]
 bounce = 1.0
@@ -7,12 +9,45 @@ bounce = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7s4qf"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7s4qf"]
+lifetime_randomness = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 22.99
+initial_velocity_max = 28.74
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cxlvu"]
+radius = 0.2
+height = 0.4
+
 [node name="ball" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.880347, 0)
 physics_material_override = SubResource("PhysicsMaterial_n1dj2")
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("1_7s4qf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_n1dj2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_7s4qf")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 100
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.96
+randomness = 0.29
+trail_lifetime = 6.05
+process_material = SubResource("ParticleProcessMaterial_7s4qf")
+draw_pass_1 = SubResource("SphereMesh_cxlvu")
+
+[node name="Explosion_Timer" type="Timer" parent="."]
+
+[node name="Respawn_Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Explosion_Timer" to="." method="_on_explosion_timer_timeout"]
+[connection signal="timeout" from="Respawn_Timer" to="." method="_on_respawn_timer_timeout"]

@@ -48,27 +48,32 @@ func _predict_ball_landing(ball: RigidBody3D) -> Vector3:
 	return predic_pos + error
 	
 func _character_movement() -> void:
+	
 	var ball = get_node("../ball")
-	var x_landing_position = _predict_ball_landing(ball).x
-	var z_landing_postion = _predict_ball_landing(ball).z
-	#var linear_distance = sqrt(x_landing_position*x_landing_position + z_landing_postion*z_landing_postion)
-	var distance_to_ball = global_position.distance_to(ball.global_position)
+	if ball:
+		var x_landing_position = _predict_ball_landing(ball).x
+		var z_landing_postion = _predict_ball_landing(ball).z
+		#var linear_distance = sqrt(x_landing_position*x_landing_position + z_landing_postion*z_landing_postion)
+		var distance_to_ball = global_position.distance_to(ball.global_position)
 	
 	#print(distance_to_ball)
 	
-	if distance_to_ball > ARRIVAL_THRESH:
-		if position.x < x_landing_position:
-			velocity.x = SPEED
-		else:
-			velocity.x = -SPEED
-		if position.z < z_landing_postion:
-			velocity.z = SPEED
-		else:
-			velocity.z = -SPEED	
-			
-	if distance_to_ball <= SWING_DISTANCE:
-		print("swing")
-		swing_racket()
+		if distance_to_ball > ARRIVAL_THRESH:
+			if position.x < x_landing_position:
+				velocity.x = SPEED
+			else:
+				velocity.x = -SPEED
+			if position.z < z_landing_postion:
+				velocity.z = SPEED
+			else:
+				velocity.z = -SPEED	
+				
+		if distance_to_ball <= SWING_DISTANCE:
+			#print("swing")
+			swing_racket()
+	else:
+		velocity.x = 0
+		velocity.z = 0
 	
 func swing_racket() -> void:
 	var tween = create_tween()

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 10.0
-const JUMP_VELOCITY = 6.5
+const JUMP_VELOCITY = 10.0
 const SWING_ROTATION = 65
 const SWING_SPEED = 0.2
 #cost SWING_RETURN = -

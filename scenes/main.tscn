@@ -179,3 +179,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.689
 
 [node name="floor_generator" parent="." groups=["floor"] instance=ExtResource("4_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 16)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-3.78552e-08, -0.5, 0.866025, -2.18557e-08, 0.866025, 0.5, -1, 0, -4.37114e-08, 18, 11, 0)

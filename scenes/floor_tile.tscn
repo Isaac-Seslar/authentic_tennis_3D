@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bb3avmh52nts" path="res://src/floor_tile.gd" id="1_m07oa"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_tvsr8"]
-size = Vector3(0.5, 0.2, 0.5)
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m07oa"]
 size = Vector3(0.5, 0.2, 0.5)

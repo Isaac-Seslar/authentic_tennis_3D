@@ -15,7 +15,7 @@ func generate_floor():
 	
 	#var x=1
 	for x in range(-grid_size, 0):
-		for z in range(-grid_size-10, 0):
+		for z in range(-grid_size+20, 0):
 			var tile = floor_tile.instantiate()
 			add_child(tile)
 			tile.position = Vector3(x * tile_spacing, 0, z * tile_spacing)

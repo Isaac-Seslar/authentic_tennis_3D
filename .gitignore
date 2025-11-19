@@ -9,3 +9,7 @@ assets/announcer.m4a
 src/button.gd.uid
 src/ball.gd.uid
 authentic_tennis_main.png.import
+scenes/main.tscn4430548586.tmp
+src/floor_generator.gd.uid
+src/floor_tile.gd.uid
+src/main.gd.uid

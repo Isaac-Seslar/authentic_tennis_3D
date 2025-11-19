@@ -2,22 +2,31 @@ extends RigidBody3D
 
 var bounce_count = 0
 var has_exploded = false
+var can_count_bounce = true
 
 @onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D
 
 func _ready():
 	position = Vector3(5, 14, 0)
 	body_entered.connect(_on_body_entered)
+	contact_monitor = true
+	max_contacts_reported = 4
+	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
-	if has_exploded:
+	if has_exploded or !can_count_bounce:
 		return
 	
 	# Check if we hit the floor
 	if body.is_in_group("floor"):
-		print("floor")
 		bounce_count += 1
 		print("Bounce #", bounce_count)
+		can_count_bounce = false
+		
+		if bounce_count == 1:
+			await get_tree().create_timer(0.3).timeout
+		can_count_bounce = true
+		
 		
 		if bounce_count >= 2:
 			explode()
@@ -31,7 +40,7 @@ func explode():
 	$Explosion_Timer.start()
 
 func destroy_floor_at_position(explosion_pos):
-	var radius_error = randf_range(0.5, 1)
+	var radius_error = randf_range(1.0, 1.5)
 	var explosion_radius = 2.0 * radius_error
 	
 	# Find all floor tiles in the scene

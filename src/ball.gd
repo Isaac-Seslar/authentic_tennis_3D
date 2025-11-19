@@ -42,15 +42,15 @@ func destroy_floor_at_position(explosion_pos):
 		if distance < explosion_radius:
 			tile.queue_free()  
 			
-func reset_ball():
-	print("ball reset")
-	get_tree().reload_current_scene()
-	
 func _on_explosion_timer_timeout() -> void:
-	$Respawn_Timer.start()
-	queue_free()	
-	print("explode")
+	destroy_floor_at_position(global_position)
+	
+	# Tell the main scene to spawn a new ball
+	await get_tree().create_timer(1.0).timeout
+	get_parent().spawn_new_ball()
+	
+	queue_free()  # Now safe to delete
 
-func _on_respawn_timer_timeout() -> void:
-	reset_ball()
-	print("respawn") 
+#func _on_respawn_timer_timeout() -> void:
+	#reset_ball()
+	#print("respawn")

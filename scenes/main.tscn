@@ -171,7 +171,7 @@ light_volumetric_fog_energy = 0.677
 light_size = 0.227
 light_specular = 0.0
 shadow_enabled = true
-spot_range = 163.2
+spot_range = 21.0
 spot_angle = 66.15
 
 [node name="NPC" parent="." instance=ExtResource("3_sugp2")]

@@ -21,10 +21,10 @@ volumetric_fog_length = 101.4
 volumetric_fog_sky_affect = 0.93
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sgp6g"]
-size = Vector3(58.2164, 2, 70.7128)
+size = Vector3(61, 2, 32)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
-size = Vector3(37, 2, 29)
+size = Vector3(70, 2, 29)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgp6g"]
 emission_enabled = true
@@ -35,36 +35,23 @@ emission_energy_multiplier = 16.0
 size = Vector3(1, 62.3824, 6.37805)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
-size = Vector3(38, 1, 33)
+size = Vector3(60, 1, 33)
 
 [node name="Main" type="WorldEnvironment"]
 environment = SubResource("Environment_sgp6g")
 script = ExtResource("1_tbgi4")
 
-[node name="Floor" type="StaticBody3D" parent="." groups=["floor"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 77.6498)
-collision_layer = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89972, 0, -3.61246)
-shape = SubResource("BoxShape3D_sgp6g")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_o5qli")
-skeleton = NodePath("../CollisionShape3D")
-
 [node name="Left wall" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.5, 9.908)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -3, 7.5, 9.908)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Left wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.52378, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3918, -5.52378, -1.35639)
 shape = SubResource("BoxShape3D_sgp6g")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Left wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.52378, 4.76837e-07)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Left wall/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6082, -9.53674e-07, 5)
 mesh = SubResource("BoxMesh_o5qli")
-skeleton = NodePath("../CollisionShape3D")
 
 [node name="Right Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 7.5, -10.4675)
@@ -75,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 4.76837e-07)
 shape = SubResource("BoxShape3D_sgp6g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Right Wall"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 4.76837e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -5)
 mesh = SubResource("BoxMesh_o5qli")
 skeleton = NodePath("../CollisionShape3D")
 
@@ -84,19 +71,22 @@ transform = Transform3D(0, -1, -2.62268e-07, 4.37114e-08, 2.62268e-07, -1, 1, -1
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Back Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, -5.01112e-22, 0, -5.01112e-22, 1, 0, -10, 0)
 shape = SubResource("BoxShape3D_sgp6g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Back Wall/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -5.01112e-22, 0, -5.01112e-22, 1, 2.08616e-07, 1.90735e-06, -5)
 mesh = SubResource("BoxMesh_o5qli")
 
 [node name="Front Wall" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -19.3628, 7.5, 0.643267)
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -29.363, 7.5, 0.643)
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Front Wall"]
 shape = SubResource("BoxShape3D_sgp6g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Front Wall/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38419e-07, 0, -5)
 mesh = SubResource("BoxMesh_o5qli")
 
 [node name="Ceiling" type="StaticBody3D" parent="."]
@@ -187,7 +177,7 @@ spot_angle = 66.15
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.68983, 1.64834, 0.471799)
 
 [node name="floor_generator" parent="." groups=["floor"] instance=ExtResource("4_jyhfs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, 16)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-3.78552e-08, -0.5, 0.866025, -2.18557e-08, 0.866025, 0.5, -1, 0, -4.37114e-08, 18, 11, 0)

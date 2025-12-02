@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 
-const SPEED = 10.0
+#const SPEED = 5.0
+#const DASH_SPEED = 5.0
 const JUMP_VELOCITY = 5.0
 const SWING_ROTATION = 65
 const SWING_SPEED = 0.2
@@ -14,9 +15,12 @@ const SWING_SPEED = 0.2
 @export var tilt_limit = deg_to_rad(75)
 
 var is_swinging = false
-var mouse_sensitivity = 0.002
-var camera_x_rotation = 0.0
-var jumps = 0.0
+var mouse_sensitivity: float = 0.002
+var camera_x_rotation: float = 0.0
+var jumps: int = 0
+var normal_speed := 5.0
+var boost_speed := 20.0
+var max_speed := normal_speed
 
 func _ready() -> void:
 	arm_pivot.rotation_degrees.x = 45
@@ -31,6 +35,8 @@ func _input(event: InputEvent) -> void:
 		camera_x_rotation -= event.relative.y * mouse_sensitivity
 		camera_x_rotation = clamp(camera_x_rotation, -PI/2, PI/2)
 		camera_pivot.rotation.x = camera_x_rotation
+
+
 		
 func swing_racket() -> void:
 	var tween = create_tween()
@@ -53,24 +59,33 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		jumps+=1
 		print("SINGLE JUMP")
-	elif Input.is_action_just_pressed("jump") and jumps==1 and not is_on_floor():
+	elif Input.is_action_just_pressed("jump") and jumps<2 and not is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		jumps+=1
-		print("DOUBLE JUMP")
 	elif Input.is_action_just_pressed("jump") and jumps>=2:
 		pass
 	
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if Input.is_action_just_pressed("dash"):
+			max_speed = boost_speed
+			$DashTimer.start()
+		#else:
+			#dash = 0.0
+			
+		velocity.z = direction.z * max_speed
+		velocity.x = direction.x * max_speed
+		#print(velocity.x)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, max_speed)
+		velocity.z = move_toward(velocity.z, 0, max_speed)
 
 	move_and_slide()
+
+func _on_dash_timer_timeout() -> void:
+	max_speed = normal_speed
+	print("cooldown")
 	
 	

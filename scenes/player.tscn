@@ -20,11 +20,14 @@ size = Vector3(0.747437, 0.795288, 0.14502)
 script = ExtResource("1_3vyb7")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.999878, 0.0156378, 0, -0.0156378, 0.999878, 0.0707211, 1.51881, 5.57149)
-visible = false
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+collision_mask = 4
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999878, 0.0156378, 0, -0.0156378, 0.999878, 0.0707211, 1.51881, 6.89886)
 fov = 82.6576
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

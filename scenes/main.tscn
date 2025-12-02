@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://djx8hamdo7wg8"]
+[gd_scene load_steps=12 format=3 uid="uid://djx8hamdo7wg8"]
 
 [ext_resource type="PackedScene" uid="uid://0po0vhdlral3" path="res://scenes/ball.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://yh61wl32cu3i" path="res://src/main.gd" id="1_tbgi4"]
@@ -34,12 +34,16 @@ emission_energy_multiplier = 16.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
 size = Vector3(1, 62.3824, 6.37805)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbgi4"]
+size = Vector3(38, 1, 33)
+
 [node name="Main" type="WorldEnvironment"]
 environment = SubResource("Environment_sgp6g")
 script = ExtResource("1_tbgi4")
 
 [node name="Floor" type="StaticBody3D" parent="." groups=["floor"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 42.6498)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 77.6498)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89972, 0, -3.61246)
@@ -51,6 +55,7 @@ skeleton = NodePath("../CollisionShape3D")
 
 [node name="Left wall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.5, 9.908)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Left wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.52378, 0)
@@ -63,6 +68,7 @@ skeleton = NodePath("../CollisionShape3D")
 
 [node name="Right Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.31134e-07, -1, 0, 1, 1.31134e-07, 0, 7.5, -10.4675)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Right Wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 4.76837e-07)
@@ -75,6 +81,7 @@ skeleton = NodePath("../CollisionShape3D")
 
 [node name="Back Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(0, -1, -2.62268e-07, 4.37114e-08, 2.62268e-07, -1, 1, -1.14641e-14, 4.37114e-08, 19.563, 7.5, -0.485)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Back Wall"]
 shape = SubResource("BoxShape3D_sgp6g")
@@ -84,6 +91,7 @@ mesh = SubResource("BoxMesh_o5qli")
 
 [node name="Front Wall" type="StaticBody3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -19.3628, 7.5, 0.643267)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Front Wall"]
 shape = SubResource("BoxShape3D_sgp6g")
@@ -93,6 +101,7 @@ mesh = SubResource("BoxMesh_o5qli")
 
 [node name="Ceiling" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.7593, 0)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling"]
 shape = SubResource("BoxShape3D_sgp6g")
@@ -182,3 +191,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, 16)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-3.78552e-08, -0.5, 0.866025, -2.18557e-08, 0.866025, 0.5, -1, 0, -4.37114e-08, 18, 11, 0)
+
+[node name="FloorCameraCollision" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCameraCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -1)
+shape = SubResource("BoxShape3D_tbgi4")
+debug_color = Color(0.382935, 0.612631, 0.00968294, 0.42)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FloorCameraCollision"]

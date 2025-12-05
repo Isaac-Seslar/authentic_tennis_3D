@@ -58,7 +58,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		jumps+=1
-		print("SINGLE JUMP")
 	elif Input.is_action_just_pressed("jump") and jumps<2 and not is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		jumps+=1

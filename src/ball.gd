@@ -3,15 +3,29 @@ extends RigidBody3D
 var bounce_count = 0
 var has_exploded = false
 var can_count_bounce = true
+var suspend_tween: Tween
 
 @onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D
 
 func _ready():
-	position = Vector3(5, 14, 0)
+	#position = Vector3(5, 14, 0)
 	body_entered.connect(_on_body_entered)
-	contact_monitor = true
-	max_contacts_reported = 4
-	body_entered.connect(_on_body_entered)
+	start_floating()
+	
+func serve() -> void:
+	if suspend_tween:
+		print("kill tween")
+		suspend_tween.kill()
+	freeze = false
+	
+func start_floating() -> void:
+	freeze = true
+	suspend_tween = create_tween().set_loops()
+	suspend_tween.set_trans(Tween.TRANS_SINE)
+	#suspend_tween.tween_callback(self.set_modulate.bind(Color.RED)).set_delay(2)
+	#suspend_tween.tween_callback(self.set_modulate.bind(Color.BLUE)).set_delay(2)
+	suspend_tween.tween_property(self, "position:y", position.y+0.5, 2)
+	suspend_tween.tween_property(self, "position:y", position.y-0.5, 2)
 
 func _on_body_entered(body):
 	if has_exploded or !can_count_bounce:

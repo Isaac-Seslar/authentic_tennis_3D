@@ -15,5 +15,8 @@ func _process(delta: float) -> void:
 
 func spawn_new_ball():
 	var new_ball = ball_scene.instantiate()
+	var entrance_tween = create_tween()
+	#entrance_tween.tween_property(new_ball, "position:y", 5, )
+	new_ball.global_position = Vector3(5, 5, 0)
 	add_child(new_ball)
-	new_ball.global_position = Vector3(5, 14, 0)
+	

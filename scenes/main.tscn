@@ -157,7 +157,7 @@ transform = Transform3D(0.0100003, 1.72586e-08, -1.14925e-15, -1.72586e-08, 0.01
 shape = SubResource("BoxShape3D_0wfyh")
 
 [node name="ball" parent="." instance=ExtResource("1_o5qli")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.46438, 4.13711, -1.83671)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.464, 3.057, -1.837)
 
 [node name="Player" parent="." instance=ExtResource("2_0wfyh")]
 transform = Transform3D(-0.0627905, 0, 0.998027, 0, 1, 0, -0.998027, 0, -0.0627905, 10.4592, 1.16736, 0)

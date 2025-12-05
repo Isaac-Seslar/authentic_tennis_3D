@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb884pc24w2td"]
+[gd_scene load_steps=9 format=3 uid="uid://cb884pc24w2td"]
 
 [ext_resource type="Script" uid="uid://csxm0y0cn6fex" path="res://src/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://81105im4n5bj" path="res://src/racket_hit_area.gd" id="2_g2els"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
 
@@ -14,7 +15,7 @@ material = SubResource("StandardMaterial3D_3vyb7")
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3vyb7"]
-size = Vector3(0.747437, 0.795288, 0.14502)
+size = Vector3(0.752617, 0.793362, 0.0909342)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3vyb7")
@@ -43,12 +44,19 @@ shape = SubResource("CapsuleShape3D_3vyb7")
 transform = Transform3D(-0.0344485, 0.210758, 0.131317, 0.0357457, 0.554163, -0.0425668, -0.136237, 0.0921087, -0.044373, 0.498913, 0.778336, 0.107759)
 mesh = SubResource("CylinderMesh_3vyb7")
 
-[node name="racket" type="MeshInstance3D" parent="ArmPivot"]
+[node name="racket" type="MeshInstance3D" parent="ArmPivot" groups=["racket"]]
 transform = Transform3D(0.725661, 0.0807422, 0.00337173, -0.0766053, 0.774948, 0.00435918, -0.0211601, -0.0365594, 0.099848, 0.724323, 1.6852, 0.189661)
 mesh = SubResource("BoxMesh_g2els")
 
+[node name="RacketHitArea" type="Area3D" parent="ArmPivot/racket" groups=["racket"]]
+script = ExtResource("2_g2els")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ArmPivot/racket/RacketHitArea" groups=["racket"]]
+transform = Transform3D(0.999999, 1.87894e-07, -1.86265e-09, -6.1933e-08, 1, 1.02445e-08, 1.19209e-07, 6.85453e-07, 0.999998, 0.00216037, 0.00319099, 0.0356107)
+shape = SubResource("BoxShape3D_3vyb7")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArmPivot"]
-transform = Transform3D(0.994111, 0.10837, 0.000478819, -0.108273, 0.993015, 0.0468948, 0.00460651, -0.0466705, 0.9989, 0.726592, 1.68991, 0.195587)
+transform = Transform3D(0.995099, 0.0987867, 0.00442195, -0.0988856, 0.994103, 0.0444987, 4.64519e-10, -0.0447179, 0.999, 0.721201, 1.68673, 0.189765)
 shape = SubResource("BoxShape3D_3vyb7")
 
 [node name="DashTimer" type="Timer" parent="."]

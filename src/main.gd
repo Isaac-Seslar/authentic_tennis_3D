@@ -14,4 +14,4 @@ func _process(delta: float) -> void:
 func spawn_new_ball():
 	var new_ball = ball_scene.instantiate()
 	add_child(new_ball)
-	new_ball.global_position = Vector3(0, 10, 0)
+	new_ball.global_position = Vector3(5, 14, 0)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://djx8hamdo7wg8"]
+[gd_scene load_steps=13 format=3 uid="uid://djx8hamdo7wg8"]
 
 [ext_resource type="PackedScene" uid="uid://0po0vhdlral3" path="res://scenes/ball.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://yh61wl32cu3i" path="res://src/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cb884pc24w2td" path="res://scenes/player.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://lyhxetg0ag5u" path="res://scenes/npc.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://buyo065yt8wi" path="res://scenes/floor_generator.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bsa4gu8efugem" path="res://scenes/death_barrier.tscn" id="6_tefeu"]
 
 [sub_resource type="Environment" id="Environment_sgp6g"]
 ambient_light_color = Color(0.477958, 0.53437, 0.740504, 1)
@@ -192,3 +193,6 @@ shape = SubResource("BoxShape3D_tbgi4")
 debug_color = Color(0.382935, 0.612631, 0.00968294, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FloorCameraCollision"]
+
+[node name="DeathBarrier" parent="." instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)

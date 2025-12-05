@@ -4,7 +4,9 @@ extends WorldEnvironment
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	var bus_idx = AudioServer.get_bus_index("Master")
+	
+	AudioServer.set_bus_mute(bus_idx, true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,4 +16,4 @@ func _process(delta: float) -> void:
 func spawn_new_ball():
 	var new_ball = ball_scene.instantiate()
 	add_child(new_ball)
-	new_ball.global_position = Vector3(0, 10, 0)
+	new_ball.global_position = Vector3(5, 14, 0)

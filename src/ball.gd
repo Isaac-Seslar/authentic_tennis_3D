@@ -50,16 +50,12 @@ func destroy_floor_at_position(explosion_pos):
 		var distance = tile.global_position.distance_to(explosion_pos)
 		if distance < explosion_radius:
 			tile.queue_free()  
-			
-func _on_explosion_timer_timeout() -> void:
-	destroy_floor_at_position(global_position)
-	
-	# Tell the main scene to spawn a new ball
+
+func _respawn_ball() -> void:
 	await get_tree().create_timer(1.0).timeout
 	get_parent().spawn_new_ball()
-	
-	queue_free()  # Now safe to delete
+	queue_free()
 
-#func _on_respawn_timer_timeout() -> void:
-	#reset_ball()
-	#print("respawn")
+func _on_explosion_timer_timeout() -> void:
+	destroy_floor_at_position(global_position)
+	_respawn_ball()	

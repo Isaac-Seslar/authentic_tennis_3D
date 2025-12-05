@@ -1,7 +1,7 @@
 extends Node3D
 #
 #@export var floor_tile: PackedScene
-@export var grid_size = 152+70
+@export var grid_size = 152+90
 @export var tile_spacing = 0.25
 @export var floor_tile: PackedScene
 

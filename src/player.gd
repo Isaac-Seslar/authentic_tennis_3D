@@ -35,8 +35,6 @@ func _input(event: InputEvent) -> void:
 		camera_x_rotation -= event.relative.y * mouse_sensitivity
 		camera_x_rotation = clamp(camera_x_rotation, -PI/2, PI/2)
 		camera_pivot.rotation.x = camera_x_rotation
-
-
 		
 func swing_racket() -> void:
 	var tween = create_tween()
@@ -85,6 +83,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_dash_timer_timeout() -> void:
 	max_speed = normal_speed
-	print("cooldown")
+	#print("cooldown")
 	
 	

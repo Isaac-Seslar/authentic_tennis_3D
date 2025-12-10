@@ -5,8 +5,11 @@ extends WorldEnvironment
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var bus_idx = AudioServer.get_bus_index("Master")
-	
 	AudioServer.set_bus_mute(bus_idx, true)
+	
+	#var condition_label = $ConditionLabel
+	#condition_label.get_parent().remove_child(condition_label)
+	#get_tree().root.add_child(condition_label)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

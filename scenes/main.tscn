@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djx8hamdo7wg8"]
+[gd_scene load_steps=15 format=3 uid="uid://djx8hamdo7wg8"]
 
 [ext_resource type="PackedScene" uid="uid://0po0vhdlral3" path="res://scenes/ball.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://yh61wl32cu3i" path="res://src/main.gd" id="1_tbgi4"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://lyhxetg0ag5u" path="res://scenes/npc.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://buyo065yt8wi" path="res://scenes/floor_generator.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bsa4gu8efugem" path="res://scenes/death_barrier.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://uxgpmts87ge8" path="res://scenes/win_screen.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://b7d443xc2yay2" path="res://scenes/lose_screen.tscn" id="11_ya4ey"]
 
 [sub_resource type="Environment" id="Environment_sgp6g"]
 ambient_light_color = Color(0.477958, 0.53437, 0.740504, 1)
@@ -159,7 +161,7 @@ shape = SubResource("BoxShape3D_0wfyh")
 [node name="ball" parent="." instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.464, 3.057, -1.837)
 
-[node name="Player" parent="." instance=ExtResource("2_0wfyh")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_0wfyh")]
 transform = Transform3D(-0.0627905, 0, 0.998027, 0, 1, 0, -0.998027, 0, -0.0627905, 10.4592, 1.16736, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -174,7 +176,7 @@ shadow_enabled = true
 spot_range = 21.0
 spot_angle = 66.15
 
-[node name="NPC" parent="." instance=ExtResource("3_sugp2")]
+[node name="NPC" parent="." groups=["npc"] instance=ExtResource("3_sugp2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.68983, 1.64834, 0.471799)
 
 [node name="floor_generator" parent="." groups=["floor"] instance=ExtResource("4_jyhfs")]
@@ -194,5 +196,9 @@ debug_color = Color(0.382935, 0.612631, 0.00968294, 0.42)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FloorCameraCollision"]
 
-[node name="DeathBarrier" parent="." instance=ExtResource("6_tefeu")]
+[node name="DeathBarrier" parent="." groups=["npc"] instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
+
+[node name="LoseScreen" parent="." instance=ExtResource("11_ya4ey")]
+
+[node name="WinScreen" parent="." instance=ExtResource("8_tipki")]

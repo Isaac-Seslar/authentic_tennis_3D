@@ -15,3 +15,8 @@ src/floor_tile.gd.uid
 src/main.gd.uid
 src/death_barrier.gd.uid
 scenes/main.tscn3191167989.tmp
+assets/you_lose.png.import
+assets/you_win.png.import
+scenes/main.tscn4611303095.tmp
+src/you_lose.gd.uid
+src/you_win.gd.uid

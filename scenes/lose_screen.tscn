@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://b7d443xc2yay2"]
+[gd_scene load_steps=22 format=3 uid="uid://b7d443xc2yay2"]
 
 [ext_resource type="Texture2D" uid="uid://bsjtg5wslwwxn" path="res://assets/you_lose.png" id="1_1n1m7"]
 [ext_resource type="Script" uid="uid://4w1swxv6gdft" path="res://src/you_lose.gd" id="2_73mov"]
+[ext_resource type="Script" uid="uid://ca1j6366aib2g" path="res://src/lose_button.gd" id="3_73mov"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wyq8"]
 atlas = ExtResource("1_1n1m7")
@@ -138,3 +139,13 @@ transform = Transform2D(2, 0, 0, 2, 0, 0)
 [node name="YouLose" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lytqm")
 script = ExtResource("2_73mov")
+
+[node name="lose_Button" type="Button" parent="."]
+offset_left = -35.5
+offset_top = 121.5
+offset_right = 36.5
+offset_bottom = 152.5
+text = "Restart?"
+script = ExtResource("3_73mov")
+
+[connection signal="pressed" from="lose_Button" to="lose_Button" method="_on_pressed"]

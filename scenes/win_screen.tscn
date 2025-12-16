@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://uxgpmts87ge8"]
+[gd_scene load_steps=22 format=3 uid="uid://uxgpmts87ge8"]
 
 [ext_resource type="Texture2D" uid="uid://bktnhb8wjhlr0" path="res://assets/you_win.png" id="1_erk2x"]
 [ext_resource type="Script" uid="uid://rqnhq3r5nb2a" path="res://src/you_win.gd" id="2_2l6cc"]
+[ext_resource type="Script" uid="uid://kr5atm1d3yv2" path="res://src/win_button.gd" id="3_2l6cc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85g3d"]
 atlas = ExtResource("1_erk2x")
@@ -136,3 +137,14 @@ animations = [{
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_e41g7")
 script = ExtResource("2_2l6cc")
+
+[node name="win_button" type="Button" parent="."]
+offset_left = -95.0
+offset_top = 182.0
+offset_right = -23.0
+offset_bottom = 213.0
+scale = Vector2(2.18503, 1.90903)
+text = "Restart?"
+script = ExtResource("3_2l6cc")
+
+[connection signal="pressed" from="win_button" to="win_button" method="_on_pressed"]

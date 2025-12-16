@@ -38,5 +38,6 @@ func _on_body_entered(body:Node3D) -> void:
 	#if body.name =="RigidBody":
 		await get_tree().create_timer(1.0).timeout
 		get_parent().spawn_new_ball()
-		body.queue_free()
+		if body:
+			body.queue_free()
 	

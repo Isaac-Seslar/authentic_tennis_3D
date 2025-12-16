@@ -208,6 +208,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8, 0)
 
 [node name="enemy_floor" type="StaticBody3D" parent="." groups=["enemy_floor"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 0)
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enemy_floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3184, 0, 0.0201416)
@@ -217,6 +219,8 @@ debug_color = Color(0.685279, 0.293368, 1, 0.42)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="enemy_floor"]
 
 [node name="player_floor" type="StaticBody3D" parent="." groups=["player_floor"]]
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player_floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3184, 0, 0.0201416)

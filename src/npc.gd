@@ -49,7 +49,8 @@ func _predict_ball_landing(ball: RigidBody3D) -> Vector3:
 	
 func _character_movement() -> void:
 	
-	var ball = get_node("../ball")
+	#var ball = get_node("../ball")
+	var ball = get_tree().get_first_node_in_group("ball")
 	if ball:
 		var x_landing_position = _predict_ball_landing(ball).x
 		var z_landing_postion = _predict_ball_landing(ball).z

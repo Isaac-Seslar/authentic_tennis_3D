@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_3vyb7")
 [sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3vyb7"]
-size = Vector3(0.747437, 0.795288, 0.14502)
+size = Vector3(1.42108, 0.795288, 0.14502)
 
 [node name="NPC" type="CharacterBody3D"]
 script = ExtResource("1_nh2m4")
@@ -37,5 +37,5 @@ transform = Transform3D(0.725661, 0.0807422, 0.00337173, -0.0766053, 0.774948, 0
 mesh = SubResource("BoxMesh_g2els")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ArmPivot"]
-transform = Transform3D(0.994111, 0.10837, 0.000478819, -0.108273, 0.993015, 0.0468948, 0.00460651, -0.0466705, 0.9989, 0.726592, 1.68991, 0.195587)
+transform = Transform3D(0.994111, 0.10837, 0.000478819, -0.108273, 0.993015, 0.0468948, 0.00460651, -0.0466705, 0.9989, 0.391753, 1.72638, 0.194035)
 shape = SubResource("BoxShape3D_3vyb7")

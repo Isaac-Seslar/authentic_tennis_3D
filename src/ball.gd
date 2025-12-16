@@ -12,6 +12,7 @@ var just_hit_player_side: bool
 func _ready():
 	#position = Vector3(5, 14, 0)
 	body_entered.connect(_on_body_entered)
+	add_to_group("ball")
 	start_floating()
 	
 func serve() -> void:

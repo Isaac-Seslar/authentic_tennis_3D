@@ -27,6 +27,7 @@ height = 0.4
 
 [node name="ball" type="RigidBody3D" groups=["ball"]]
 physics_material_override = SubResource("PhysicsMaterial_n1dj2")
+continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_7s4qf")

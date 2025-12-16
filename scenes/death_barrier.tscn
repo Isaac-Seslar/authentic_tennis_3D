@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsa4gu8efugem"]
 
-[ext_resource type="Script" uid="uid://bcpvkb1fd048w" path="res://src/death_barrier.gd" id="1_cg6e6"]
+[ext_resource type="Script" uid="uid://e7a4k3vquk44" path="res://src/death_barrier.gd" id="1_cg6e6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xx7b"]
-size = Vector3(50, 1, 90)
+size = Vector3(300, 1, 300)
 
 [node name="DeathBarrier" type="Area3D"]
 script = ExtResource("1_cg6e6")

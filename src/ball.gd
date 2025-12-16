@@ -4,6 +4,8 @@ var bounce_count = 0
 var has_exploded = false
 var can_count_bounce = true
 var suspend_tween: Tween
+var just_hit_enemy_side: bool
+var just_hit_player_side: bool
 
 @onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D
 
@@ -30,20 +32,46 @@ func start_floating() -> void:
 func _on_body_entered(body):
 	if has_exploded or !can_count_bounce:
 		return
-	
-	# Check if we hit the floor
-	if body.is_in_group("floor"):
-		bounce_count += 1
-		print("Bounce #", bounce_count)
-		can_count_bounce = false
 		
+	if body.is_in_group("enemy_floor"):
+		just_hit_enemy_side = true
+		if just_hit_player_side:
+			bounce_count=0
+			just_hit_player_side = false
+		bounce_count+=1
+		print("enemy floor")
 		if bounce_count == 1:
 			await get_tree().create_timer(0.3).timeout
+			
 		can_count_bounce = true
-		
-		
 		if bounce_count >= 2:
 			explode()
+			
+	if body.is_in_group("player_floor"):
+		just_hit_player_side = true
+		if just_hit_enemy_side:
+			bounce_count=0
+			just_hit_enemy_side = false
+		bounce_count+=1
+		print("player_floor")
+		if bounce_count == 1:
+			await get_tree().create_timer(0.3).timeout
+			
+		can_count_bounce = true
+		if bounce_count >= 2:
+			explode()
+	
+		
+		#if body.is_in_group("floor"):
+		#bounce_count += 1
+		#print("Bounce #", bounce_count)
+		#can_count_bounce = false
+		#
+		#if bounce_count == 1:
+			#await get_tree().create_timer(0.3).timeout
+		#can_count_bounce = true
+		#if bounce_count >= 2:
+			#explode()
 
 func explode():
 	has_exploded = true

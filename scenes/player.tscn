@@ -29,7 +29,6 @@ spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.999878, 0.0156378, 0, -0.0156378, 0.999878, 0.0707211, 1.51881, 6.89886)
-fov = 82.6576
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -1.8258e-07, 2.38419e-07, -1.53323e-07)

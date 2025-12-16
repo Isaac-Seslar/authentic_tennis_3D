@@ -26,6 +26,7 @@ radius = 0.2
 height = 0.4
 
 [node name="ball" type="RigidBody3D" groups=["ball"]]
+collision_layer = 129
 physics_material_override = SubResource("PhysicsMaterial_n1dj2")
 continuous_cd = true
 contact_monitor = true

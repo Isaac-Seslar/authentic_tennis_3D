@@ -7,7 +7,7 @@ const JUMP_VELOCITY = 6.5
 const SWING_ROTATION = 65
 const SWING_SPEED = 0.2
 const ARRIVAL_THRESH: = 1.0
-const SWING_DISTANCE = 3.0
+const SWING_DISTANCE = 2.5
 #cost SWING_RETURN = -
 
 @onready var arm_pivot: CharacterBody3D = $ArmPivot
